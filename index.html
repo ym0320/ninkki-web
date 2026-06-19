@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ninkki（ニンキ）｜日記を書くだけで、人気者。</title>
-<meta name="description" content="日記を書くだけで、たくさんのフォロワーがいいね・コメント・シェアで反応してくれる。あなたが主役の、もうひとつのSNS。iPhoneアプリ「Ninkki（ニンキ）」を無料でダウンロード。" />
+<title>Ninkki（ニンキ）｜日記を書くだけで人気者になれる無料SNSアプリ</title>
+<meta name="description" content="日記を書くだけで、AIのフォロワーがいいね・コメント・シェアでリアルに反応してくれる。あなたが主役の、もうひとつの無料SNSアプリ。iPhone対応「Ninkki（ニンキ）」を無料でダウンロード。" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="keywords" content="Ninkki,ニンキ,日記,SNS,アプリ,いいね,フォロワー,人気者,iPhone,無料" />
+<meta name="keywords" content="Ninkki,ニンキ,日記,日記アプリ,SNS,SNSアプリ,AI,無料,無料アプリ,いいね,フォロワー,人気者,iPhone,つぶやき" />
 <meta name="theme-color" content="#2E9CCA" />
 <link rel="canonical" href="https://ninkki.com/" />
 
@@ -103,19 +103,23 @@
   .logo--light{color:#fff}
   .logo--light .n{color:var(--pink-soft)}
 
-  /* ---------- App Store button ---------- */
+  /* ---------- App Store badge (Apple純正準拠) ---------- */
   .appstore{
-    display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;
-    padding:12px 20px;border-radius:13px;font-weight:700;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;
+    display:inline-flex;align-items:center;gap:9px;background:#000;color:#fff;
+    padding:9px 16px;border-radius:12px;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","Segoe UI",Arial,sans-serif;
+    transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;
     box-shadow:0 6px 18px rgba(15,30,45,.18);
   }
-  .appstore:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,30,45,.28);background:#0e1620}
-  .appstore svg{width:22px;height:22px;fill:#fff}
-  .appstore .as-txt{display:flex;flex-direction:column;line-height:1.1;text-align:left}
-  .appstore .as-sm{font-size:10px;font-weight:600;opacity:.8;letter-spacing:.3px}
-  .appstore .as-lg{font-size:16px;font-weight:800;letter-spacing:.2px}
-  .appstore.sm{padding:9px 15px}
-  .appstore.sm .as-lg{font-size:14px}
+  .appstore:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,30,45,.28);background:#111}
+  .appstore svg{width:24px;height:24px;fill:#fff}
+  .appstore .as-txt{display:flex;flex-direction:column;line-height:1;text-align:left}
+  .appstore .as-sm{font-size:11px;font-weight:400;letter-spacing:.2px}
+  .appstore .as-lg{font-size:20px;font-weight:600;letter-spacing:.1px;margin-top:2px}
+  .appstore.sm{padding:7px 13px;gap:8px}
+  .appstore.sm svg{width:21px;height:21px}
+  .appstore.sm .as-sm{font-size:9.5px}
+  .appstore.sm .as-lg{font-size:16px}
 
   /* mobile sticky CTA (thumb-zone, always visible on phones) */
   .mobile-cta{
@@ -143,7 +147,7 @@
   .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:currentColor;border-radius:2px;transition:right .3s var(--ease)}
   .nav-links a:hover::after{right:0}
   header.nav.scrolled{background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);box-shadow:0 1px 0 rgba(20,45,70,.06);border-color:var(--line-2)}
-  header.nav.scrolled .logo{color:var(--ink)}
+  header.nav.scrolled .logo{color:var(--ocean-deep)}
   header.nav.scrolled .logo .n{color:var(--pink)}
   header.nav.scrolled .nav-links a{color:var(--ink-2)}
   header.nav.scrolled .nav-links a:hover{color:var(--ocean-deep)}
@@ -197,7 +201,8 @@
   .kicker{display:inline-block;color:var(--ocean);font-family:"Nunito";font-weight:800;font-size:13px;letter-spacing:2.5px;text-transform:uppercase}
   h2{font-weight:900;font-size:clamp(27px,3.7vw,40px);line-height:1.34;margin-top:12px;letter-spacing:.4px}
   .sec-head p{margin-top:18px;color:var(--ink-soft);font-size:15.5px}
-  .bg-soft{background:var(--bg-2)}
+  .bg-soft{background-color:var(--bg-2);
+    background-image:radial-gradient(rgba(46,156,202,.045) 1px,transparent 1px);background-size:24px 24px}
 
   /* ---------- steps ---------- */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -214,8 +219,11 @@
   .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .feat{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
   .feat:hover{transform:translateY(-5px);box-shadow:var(--sh-md);border-color:#d7e6ee}
-  .feat .fi{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;background:var(--ocean-soft);color:var(--ocean-deep)}
-  .feat .fi svg{width:24px;height:24px}
+  .feat .fi{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;
+    background:var(--ocean-soft);background:color-mix(in srgb,var(--c,#2E9CCA) 13%,#fff);
+    color:var(--c,#1c7aa6);transition:transform .35s var(--ease)}
+  .feat:hover .fi{transform:scale(1.08) rotate(-3deg)}
+  .feat .fi svg{width:25px;height:25px}
   .feat h3{font-size:17px;font-weight:900;margin-bottom:9px}
   .feat p{font-size:13.5px;color:var(--ink-soft)}
 
@@ -230,8 +238,23 @@
   .show-text li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;font-weight:500}
   .show-text li .ck{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ocean-soft);color:var(--ocean-deep);display:grid;place-items:center;margin-top:3px}
   .show-text li .ck svg{width:13px;height:13px;stroke-width:2.4}
-  .show-shot{display:flex;justify-content:center}
-  .show-shot .phone{width:min(264px,74vw)}
+  .show-shot{display:flex;justify-content:center;position:relative}
+  .show-shot::before{content:"";position:absolute;width:78%;height:74%;left:11%;top:13%;border-radius:50%;
+    background:radial-gradient(circle,rgba(102,126,234,.20),transparent 70%);filter:blur(34px);z-index:0}
+  .show-shot .phone{width:min(264px,74vw);position:relative;z-index:1}
+
+  /* ---------- theme color palette ---------- */
+  .palette{margin-top:70px}
+  .palette .ptitle{text-align:center;margin-bottom:30px}
+  .palette .ptitle h3{font-size:clamp(20px,2.4vw,26px);font-weight:900;margin-bottom:8px}
+  .palette .ptitle p{color:var(--ink-soft);font-size:14px}
+  .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .sw{display:flex;flex-direction:column;gap:9px}
+  .sw .chip{width:100%;aspect-ratio:3/2;border-radius:15px;background:linear-gradient(135deg,var(--a),var(--b));
+    box-shadow:var(--sh-sm);border:1px solid rgba(0,0,0,.05);transition:transform .3s var(--ease),box-shadow .3s}
+  .sw:hover .chip{transform:translateY(-5px) scale(1.03);box-shadow:var(--sh-md)}
+  .sw .nm{font-size:12px;font-weight:800;color:var(--ink-2);text-align:center;line-height:1.3}
+  .sw .nm small{display:block;font-size:10.5px;font-weight:500;color:var(--ink-soft)}
 
   /* ---------- plans ---------- */
   .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
@@ -311,6 +334,7 @@
     .show-text ul{display:inline-grid;text-align:left}
     .show-text li{justify-content:flex-start}
     .plan-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+    .swatches{grid-template-columns:repeat(4,1fr);gap:13px}
     .sec-head{margin-bottom:42px}
     .nav-links{display:none}
     .chip.c1{left:0}.chip.c2{right:0}
@@ -330,6 +354,7 @@
     .hero h1{font-size:clamp(32px,9vw,42px)}
     .chip{transform:scale(.88)}
     .chip.c1{top:34px;left:-4px}.chip.c2{bottom:74px;right:-4px}
+    .swatches{grid-template-columns:repeat(3,1fr);gap:11px}
     .step,.feat,.plan{padding:26px 22px}
     .faq summary{padding:18px 18px;font-size:15px}
     .faq .ans{padding:0 18px 20px}
@@ -350,7 +375,7 @@
     </nav>
     <a class="appstore sm" href="https://apps.apple.com/jp/app/ninkki/id6761115630" aria-label="App Storeでダウンロード">
       <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-      <span class="as-txt"><span class="as-sm">入手する</span><span class="as-lg">App Store</span></span>
+      <span class="as-txt"><span class="as-sm">Download on the</span><span class="as-lg">App Store</span></span>
     </a>
   </div>
 </header>
@@ -368,7 +393,7 @@
       <div class="hero-cta">
         <a class="appstore" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
           <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span class="as-txt"><span class="as-sm">ダウンロードは</span><span class="as-lg">App Store</span></span>
+          <span class="as-txt"><span class="as-sm">Download on the</span><span class="as-lg">App Store</span></span>
         </a>
         <a class="ghost" href="#how">どんなアプリ？
           <svg class="icn" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -448,27 +473,27 @@
     </div>
     <div class="feat-grid">
       <div class="feat reveal">
-        <div class="fi"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/></svg></div>
+        <div class="fi" style="--c:#EC4899"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/></svg></div>
         <h3>リアルなコメントと返信</h3><p>フォロワー同士が会話したり、あなたに共感したり。やりとりが時間をかけて自然に広がります。</p>
       </div>
       <div class="feat reveal">
-        <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/></svg></div>
+        <div class="fi" style="--c:#7C3AED"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/></svg></div>
         <h3>AI投稿レビュー</h3><p>あなたの投稿の傾向を読み取って、「どんな人か」をやさしく言葉にしてくれます。</p>
       </div>
       <div class="feat reveal">
-        <div class="fi"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
+        <div class="fi" style="--c:#4361EE"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
         <h3>投稿分析・感情グラフ</h3><p>熱量・共鳴・情緒などをレーダーで可視化。投稿がポジティブ寄りかも一目でわかります。</p>
       </div>
       <div class="feat reveal">
-        <div class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14.5L7.5 22 12 19.5 16.5 22 15 14.5"/></svg></div>
+        <div class="fi" style="--c:#E5A100"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14.5L7.5 22 12 19.5 16.5 22 15 14.5"/></svg></div>
         <h3>集めて嬉しいバッジ</h3><p>「深夜の住人」「いいね王」「コメント嵐」など、行動に応じて33種類のバッジを獲得。</p>
       </div>
       <div class="feat reveal">
-        <div class="fi"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="4" height="9" rx="1"/><rect x="10" y="4" width="4" height="16" rx="1"/><rect x="16" y="8" width="4" height="12" rx="1"/></svg></div>
+        <div class="fi" style="--c:#059669"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="4" height="9" rx="1"/><rect x="10" y="4" width="4" height="16" rx="1"/><rect x="16" y="8" width="4" height="12" rx="1"/></svg></div>
         <h3>投票（アンケート）</h3><p>2〜4択の投票を添えれば、フォロワーがリアルな割合で投票してくれます。</p>
       </div>
       <div class="feat reveal">
-        <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2 0-1.3-1-1.5-1-2.5 0-.8.7-1.5 1.5-1.5H17a4 4 0 0 0 4-4c0-4.4-4-7.5-9-7.5z"/><circle cx="7.5" cy="11.5" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/></svg></div>
+        <div class="fi" style="--c:#6B3FA0"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2 0-1.3-1-1.5-1-2.5 0-.8.7-1.5 1.5-1.5H17a4 4 0 0 0 4-4c0-4.4-4-7.5-9-7.5z"/><circle cx="7.5" cy="11.5" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/></svg></div>
         <h3>自分だけの着せ替え</h3><p>20種類のテーマカラー・フォント・アプリアイコンで、あなた好みに自由にカスタマイズ。</p>
       </div>
     </div>
@@ -518,6 +543,35 @@
         </ul>
       </div>
       <div class="show-shot reveal"><div class="phone"><img src="./img/colors.jpg" alt="テーマカラー選択画面" /></div></div>
+    </div>
+
+    <div class="palette reveal">
+      <div class="ptitle">
+        <h3>20色のテーマカラーから選べる</h3>
+        <p>海も、夜も、桜も。その日の気分に合わせて、アプリ全体の色を着せ替えられます。</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><span class="chip" style="--a:#2E9CCA;--b:#667eea"></span><span class="nm">Ocean<small>海</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#EC4899;--b:#f472b6"></span><span class="nm">Sakura<small>桜</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#059669;--b:#34d399"></span><span class="nm">Forest<small>森</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#ea580c;--b:#f59e0b"></span><span class="nm">Sunset<small>夕焼け</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#7C3AED;--b:#a78bfa"></span><span class="nm">Lavender<small>藤</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#1E293B;--b:#64748b"></span><span class="nm">Midnight<small>夜</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#E11D48;--b:#fb7185"></span><span class="nm">Rose<small>薔薇</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#4a7c59;--b:#8fbc8f"></span><span class="nm">Matcha<small>抹茶</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#FF6F61;--b:#ff9a8b"></span><span class="nm">Coral<small>珊瑚</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#6B3FA0;--b:#9B72CF"></span><span class="nm">Grape<small>葡萄</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#00BFA5;--b:#64FFDA"></span><span class="nm">Mint<small>ミント</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#C68642;--b:#DEB887"></span><span class="nm">Caramel<small>キャラメル</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#4361EE;--b:#7B8FF7"></span><span class="nm">Blueberry<small>ベリー</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#FF8DA1;--b:#FFB3C1"></span><span class="nm">Peach<small>桃</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#36454F;--b:#708090"></span><span class="nm">Charcoal<small>墨</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#E5A100;--b:#FFD700"></span><span class="nm">Lemon<small>レモン</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#9B111E;--b:#E0115F"></span><span class="nm">Ruby<small>ルビー</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#2D6A8F;--b:#48D1CC"></span><span class="nm">Aurora<small>極光</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#B0A4E3;--b:#D4C5F9"></span><span class="nm">Cotton<small>綿雲</small></span></div>
+        <div class="sw"><span class="chip" style="--a:#F5EDE3;--b:#cdbba6"></span><span class="nm">Milk<small>ミルク</small></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -623,7 +677,7 @@
     <div class="hero-cta">
       <a class="appstore" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
         <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-        <span class="as-txt"><span class="as-sm">ダウンロードは</span><span class="as-lg">App Store</span></span>
+        <span class="as-txt"><span class="as-sm">Download on the</span><span class="as-lg">App Store</span></span>
       </a>
     </div>
   </div>
@@ -641,7 +695,7 @@
     <div class="foot-grid">
       <div>
         <span class="logo logo--light">Ni<span class="n">n</span>kki</span>
-        <p style="margin-top:16px;max-width:24em;font-size:13px;color:rgba(255,255,255,.55)">日記を書くだけで、人気者。<br>あなたが主役の、もうひとつのSNS。</p>
+        <p style="margin-top:16px;max-width:25em;font-size:13px;color:rgba(255,255,255,.55)">日記を書くだけで、人気者。AIのフォロワーが反応してくれる、あなたが主役の無料SNSアプリです。</p>
       </div>
       <div class="foot-links">
         <div class="foot-col">
