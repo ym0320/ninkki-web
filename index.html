@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ninkki（ニンキ）｜日記を書くだけで、人気者。</title>
+<meta name="description" content="日記を書くだけで、たくさんのフォロワーがいいね・コメント・シェアで反応してくれる。あなたが主役の、もうひとつのSNS。iPhoneアプリ Ninkki。" />
+
+<meta property="og:title" content="Ninkki｜日記を書くだけで、人気者。" />
+<meta property="og:description" content="日記を書くだけで、たくさんのフォロワーが反応してくれる。あなたが主役の、もうひとつのSNS。" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="./img/icon.png" />
+<link rel="icon" href="./img/icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ocean:#2E9CCA;
+    --ocean-deep:#1c7aa6;
+    --ocean-soft:#eef7fb;
+    --accent:#667eea;
+    --pink:#EC4899;
+    --pink-soft:#f9a8d4;
+    --ink:#16202b;
+    --ink-2:#3c4856;
+    --ink-soft:#71808f;
+    --line:#e7ecf1;
+    --line-2:#eef2f6;
+    --bg:#ffffff;
+    --bg-2:#f6f9fb;
+    --radius:20px;
+    --radius-sm:14px;
+    --sh-sm:0 2px 10px rgba(20,45,70,.05);
+    --sh-md:0 12px 34px rgba(20,55,90,.10);
+    --sh-lg:0 34px 80px rgba(15,60,100,.20);
+    --maxw:1120px;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:var(--bg);
+    line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  svg{display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .icn{width:22px;height:22px;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  .logo{font-family:"Nunito",sans-serif;font-weight:900;font-size:25px;letter-spacing:.2px;line-height:1;display:inline-flex}
+  .logo .n{color:var(--pink)}
+  .logo--light{color:#fff}
+  .logo--light .n{color:var(--pink-soft)}
+
+  /* ---------- App Store button ---------- */
+  .appstore{
+    display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;
+    padding:12px 20px;border-radius:13px;font-weight:700;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;
+    box-shadow:0 6px 18px rgba(15,30,45,.18);
+  }
+  .appstore:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,30,45,.28);background:#0e1620}
+  .appstore svg{width:22px;height:22px;fill:#fff}
+  .appstore .as-txt{display:flex;flex-direction:column;line-height:1.1;text-align:left}
+  .appstore .as-sm{font-size:10px;font-weight:600;opacity:.8;letter-spacing:.3px}
+  .appstore .as-lg{font-size:16px;font-weight:800;letter-spacing:.2px}
+  .appstore.sm{padding:9px 15px}
+  .appstore.sm .as-lg{font-size:14px}
+
+  /* mobile sticky CTA (thumb-zone, always visible on phones) */
+  .mobile-cta{
+    display:none;position:fixed;left:14px;right:14px;bottom:14px;z-index:75;
+    align-items:center;justify-content:center;gap:10px;
+    background:var(--ink);color:#fff;padding:15px;border-radius:15px;font-weight:800;font-size:15px;
+    box-shadow:0 12px 32px rgba(15,30,45,.34);
+    transition:transform .35s var(--ease),opacity .35s;
+  }
+  .mobile-cta svg{width:20px;height:20px;fill:#fff}
+  .mobile-cta.hide{transform:translateY(140%);opacity:0;pointer-events:none}
+
+  .ghost{
+    display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:13px;font-weight:700;font-size:14.5px;
+    border:1.5px solid rgba(255,255,255,.45);color:#fff;transition:background .25s,border-color .25s,transform .2s var(--ease);
+  }
+  .ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+  .ghost .icn{width:18px;height:18px}
+
+  /* ---------- nav ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s var(--ease),box-shadow .35s,border-color .35s;border-bottom:1px solid transparent}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:600;color:rgba(255,255,255,.86);position:relative;transition:color .25s}
+  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:currentColor;border-radius:2px;transition:right .3s var(--ease)}
+  .nav-links a:hover::after{right:0}
+  header.nav.scrolled{background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);box-shadow:0 1px 0 rgba(20,45,70,.06);border-color:var(--line-2)}
+  header.nav.scrolled .logo{color:var(--ink)}
+  header.nav.scrolled .logo .n{color:var(--pink)}
+  header.nav.scrolled .nav-links a{color:var(--ink-2)}
+  header.nav.scrolled .nav-links a:hover{color:var(--ocean-deep)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:150px 0 120px;color:#fff;
+    background:radial-gradient(1000px 560px at 82% -12%,rgba(102,126,234,.62),transparent 60%),
+               linear-gradient(165deg,#33a3d0 0%,#2b93c6 46%,#2283b7 100%);}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:110px;background:var(--bg);
+    clip-path:polygon(0 100%,100% 100%,100% 22%,0 70%)}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
+    padding:8px 15px;border-radius:99px;font-size:12.5px;font-weight:700;letter-spacing:.5px;margin-bottom:26px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--pink-soft);box-shadow:0 0 0 4px rgba(249,168,212,.3)}
+  .hero h1{font-weight:900;font-size:clamp(36px,5.6vw,60px);line-height:1.16;letter-spacing:.4px;text-shadow:0 6px 26px rgba(0,40,70,.22)}
+  .hero h1 .hl{position:relative;white-space:nowrap}
+  .hero h1 .hl::after{content:"";position:absolute;left:-1%;right:-1%;bottom:8px;height:16px;z-index:-1;background:rgba(249,168,212,.55);border-radius:6px}
+  .hero .lead{margin-top:24px;font-size:clamp(15px,1.65vw,18px);color:rgba(255,255,255,.92);font-weight:500;max-width:29em}
+  .hero-cta{margin-top:34px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .hero-note{margin-top:18px;font-size:12.5px;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:8px}
+  .hero-note .icn{width:15px;height:15px;opacity:.85}
+
+  /* phone */
+  .phone-stage{display:flex;justify-content:center;position:relative;will-change:transform}
+  .phone{width:min(286px,78vw);border-radius:46px;background:#0b0f14;padding:11px;box-shadow:var(--sh-lg);position:relative}
+  .phone::before{content:"";position:absolute;top:17px;left:50%;transform:translateX(-50%);width:92px;height:23px;background:#0b0f14;border-radius:0 0 16px 16px;z-index:3}
+  .phone img{width:100%;display:block;border-radius:35px}
+  .chip{position:absolute;background:#fff;color:var(--ink);border-radius:15px;box-shadow:var(--sh-md);padding:11px 14px;display:flex;align-items:center;gap:11px;z-index:4}
+  .chip .ci{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+  .chip .ci svg{width:18px;height:18px}
+  .chip b{font-size:14px;font-weight:800;display:block;line-height:1.2}
+  .chip span{font-size:11px;color:var(--ink-soft);font-weight:600}
+  .chip.c1{top:50px;left:-22px;animation:floaty 6s var(--ease) infinite}
+  .chip.c2{bottom:96px;right:-26px;animation:floaty 6.8s var(--ease) infinite .7s}
+  .chip.c1 .ci{background:#ffe3ec;color:var(--pink)}
+  .chip.c2 .ci{background:var(--ocean-soft);color:var(--ocean)}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* ---------- stats band ---------- */
+  .stats{padding:8px 0 76px}
+  .stats-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--sh-sm);padding:30px 24px}
+  .stat{text-align:center;position:relative}
+  .stat+.stat::before{content:"";position:absolute;left:0;top:14%;height:72%;width:1px;background:var(--line)}
+  .stat .num{font-family:"Nunito";font-weight:900;font-size:clamp(28px,3.4vw,40px);color:var(--ocean-deep);line-height:1}
+  .stat .lbl{font-size:13px;color:var(--ink-soft);font-weight:600;margin-top:8px}
+
+  /* ---------- section ---------- */
+  section{padding:96px 0}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 56px}
+  .kicker{display:inline-block;color:var(--ocean);font-family:"Nunito";font-weight:800;font-size:13px;letter-spacing:2.5px;text-transform:uppercase}
+  h2{font-weight:900;font-size:clamp(27px,3.7vw,40px);line-height:1.34;margin-top:12px;letter-spacing:.4px}
+  .sec-head p{margin-top:18px;color:var(--ink-soft);font-size:15.5px}
+  .bg-soft{background:var(--bg-2)}
+
+  /* ---------- steps ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .step{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;position:relative;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+  .step:hover{transform:translateY(-6px);box-shadow:var(--sh-md);border-color:#d7e6ee}
+  .step .si{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;margin-bottom:20px;color:#fff;
+    background:linear-gradient(135deg,var(--ocean),var(--accent));box-shadow:0 10px 22px rgba(46,156,202,.32)}
+  .step .si svg{width:26px;height:26px;stroke:#fff}
+  .step .sn{position:absolute;top:30px;right:30px;font-family:"Nunito";font-weight:900;font-size:30px;color:var(--line)}
+  .step h3{font-size:18px;font-weight:900;margin-bottom:8px}
+  .step p{font-size:14px;color:var(--ink-soft)}
+
+  /* ---------- features ---------- */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .feat{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+  .feat:hover{transform:translateY(-5px);box-shadow:var(--sh-md);border-color:#d7e6ee}
+  .feat .fi{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;background:var(--ocean-soft);color:var(--ocean-deep)}
+  .feat .fi svg{width:24px;height:24px}
+  .feat h3{font-size:17px;font-weight:900;margin-bottom:9px}
+  .feat p{font-size:13.5px;color:var(--ink-soft)}
+
+  /* ---------- showcase ---------- */
+  .show-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:96px}
+  .show-row:last-child{margin-bottom:0}
+  .show-row.rev .show-text{order:2}
+  .show-text .tag{display:inline-block;background:var(--ocean-soft);color:var(--ocean-deep);font-weight:700;font-size:12.5px;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+  .show-text h3{font-size:clamp(22px,2.9vw,31px);font-weight:900;line-height:1.42;margin-bottom:14px}
+  .show-text p{color:var(--ink-soft);font-size:15px}
+  .show-text ul{list-style:none;margin-top:20px;display:grid;gap:12px}
+  .show-text li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;font-weight:500}
+  .show-text li .ck{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ocean-soft);color:var(--ocean-deep);display:grid;place-items:center;margin-top:3px}
+  .show-text li .ck svg{width:13px;height:13px;stroke-width:2.4}
+  .show-shot{display:flex;justify-content:center}
+  .show-shot .phone{width:min(264px,74vw)}
+
+  /* ---------- plans ---------- */
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  .plan{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;display:flex;flex-direction:column;position:relative;transition:transform .35s var(--ease),box-shadow .35s}
+  .plan:hover{box-shadow:var(--sh-md)}
+  .plan.pop{border:1.5px solid var(--ocean);box-shadow:var(--sh-md)}
+  .plan .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--ocean),var(--accent));color:#fff;font-size:12px;font-weight:800;padding:6px 16px;border-radius:99px;white-space:nowrap;box-shadow:0 6px 16px rgba(46,156,202,.36)}
+  .plan .pi{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--ocean-soft);color:var(--ocean-deep);margin-bottom:14px}
+  .plan .pi svg{width:24px;height:24px}
+  .plan .pname{font-size:20px;font-weight:900;margin-bottom:3px}
+  .plan .ptag{font-size:12.5px;color:var(--ink-soft);min-height:40px}
+  .plan .price{font-family:"Nunito";font-weight:900;font-size:35px;margin:14px 0 0;color:var(--ink)}
+  .plan .price small{font-size:14px;font-weight:700;color:var(--ink-soft);font-family:"Noto Sans JP"}
+  .plan .followers{font-weight:800;color:var(--ocean-deep);font-size:14.5px;background:var(--ocean-soft);border-radius:12px;padding:10px;text-align:center;margin:16px 0 20px}
+  .plan ul{list-style:none;display:grid;gap:11px;margin-bottom:24px}
+  .plan li{font-size:13.5px;display:flex;gap:9px;align-items:flex-start}
+  .plan li .ck{flex:none;color:var(--ocean-deep);margin-top:2px}
+  .plan li .ck svg{width:15px;height:15px;stroke-width:2.4}
+  .plan li.mute{color:#aeb6bf}
+  .plan li.mute .ck{color:#cdd4db}
+  .plan .pcta{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:13px;font-weight:800;font-size:14px;transition:transform .2s var(--ease),box-shadow .25s,background .25s}
+  .plan .pcta.fill{background:linear-gradient(135deg,var(--ocean),var(--accent));color:#fff;box-shadow:0 8px 20px rgba(46,156,202,.3)}
+  .plan .pcta.line{background:var(--bg);border:1.5px solid var(--line);color:var(--ink)}
+  .plan .pcta:hover{transform:translateY(-2px)}
+  .plan .pcta.line:hover{border-color:var(--ocean);color:var(--ocean-deep)}
+  .plan .pcta .icn{width:16px;height:16px}
+  .plan-note{text-align:center;margin-top:28px;color:var(--ink-soft);font-size:12.5px;line-height:1.9}
+  .iap-badge{display:inline-flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:12.5px;font-weight:700;color:var(--ink-2);margin-top:14px}
+  .iap-badge .icn{width:15px;height:15px;color:var(--ocean-deep)}
+
+  /* ---------- faq ---------- */
+  .faq-list{max-width:760px;margin:0 auto;display:grid;gap:14px}
+  .faq{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;transition:box-shadow .3s,border-color .3s}
+  .faq[open]{box-shadow:var(--sh-sm);border-color:#d7e6ee}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:800;font-size:15.5px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:none;width:24px;height:24px;border-radius:50%;background:var(--ocean-soft);color:var(--ocean-deep);display:grid;place-items:center;transition:transform .3s var(--ease)}
+  .faq[open] summary .pm{transform:rotate(45deg)}
+  .faq summary .pm svg{width:14px;height:14px;stroke-width:2.4}
+  .faq .ans{padding:0 24px 22px;color:var(--ink-soft);font-size:14px}
+
+  /* ---------- final ---------- */
+  .final{background:radial-gradient(800px 400px at 50% -30%,rgba(102,126,234,.5),transparent 60%),linear-gradient(150deg,#2f9ece,#2283b7);color:#fff;text-align:center}
+  .final h2{color:#fff}
+  .final p{color:rgba(255,255,255,.92);margin:18px auto 32px;max-width:32em;font-size:15.5px}
+  .final .hero-cta{justify-content:center}
+
+  /* ---------- footer ---------- */
+  footer{background:#101b24;color:rgba(255,255,255,.7);padding:58px 0 40px;font-size:14px}
+  .foot-grid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
+  .foot-links{display:flex;gap:56px;flex-wrap:wrap}
+  .foot-col h4{color:#fff;font-size:12px;font-weight:700;margin-bottom:15px;letter-spacing:1px;text-transform:uppercase;opacity:.8}
+  .foot-col a{display:block;color:rgba(255,255,255,.6);font-size:13.5px;margin-bottom:10px;transition:color .2s}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:42px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.45)}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .chip{animation:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- responsive ---------- */
+  @media(max-width:920px){
+    section{padding:68px 0}
+    .hero{padding:120px 0 88px}
+    .hero-grid{grid-template-columns:1fr;gap:52px;text-align:center}
+    .hero .lead{margin-inline:auto}.hero-cta,.hero-note{justify-content:center}.eyebrow{margin-inline:auto}
+    .steps,.feat-grid{grid-template-columns:1fr}
+    .feat-grid{grid-template-columns:repeat(2,1fr)}
+    .show-row{grid-template-columns:1fr;gap:34px;text-align:center;margin-bottom:64px}
+    .show-row.rev .show-text{order:0}
+    .show-text ul{display:inline-grid;text-align:left}
+    .show-text li{justify-content:flex-start}
+    .plan-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+    .sec-head{margin-bottom:42px}
+    .nav-links{display:none}
+    .chip.c1{left:0}.chip.c2{right:0}
+    .mobile-cta{display:flex}
+    body{padding-bottom:84px}
+  }
+  @media(max-width:540px){
+    section{padding:58px 0}
+    .feat-grid{grid-template-columns:1fr}
+    .stats{padding:4px 0 60px}
+    .stats-inner{grid-template-columns:1fr;gap:20px;padding:26px 20px}
+    .stat+.stat::before{display:none}
+    .stat+.stat{border-top:1px solid var(--line);padding-top:20px}
+    .nav-inner{height:60px}
+    .appstore.sm{padding:9px 13px}
+    .appstore.sm .as-sm{display:none}
+    .hero h1{font-size:clamp(32px,9vw,42px)}
+    .chip{transform:scale(.88)}
+    .chip.c1{top:34px;left:-4px}.chip.c2{bottom:74px;right:-4px}
+    .step,.feat,.plan{padding:26px 22px}
+    .faq summary{padding:18px 18px;font-size:15px}
+    .faq .ans{padding:0 18px 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <span class="logo logo--light">Ni<span class="n">n</span>kki</span>
+    <nav class="nav-links">
+      <a href="#how">使い方</a>
+      <a href="#features">できること</a>
+      <a href="#plans">プラン</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <a class="appstore sm" href="https://apps.apple.com/jp/app/ninkki/id6761115630" aria-label="App Storeでダウンロード">
+      <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      <span class="as-txt"><span class="as-sm">入手する</span><span class="as-lg">App Store</span></span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>あなたが主役の、もうひとつのSNS</span>
+      <h1>日記を書くだけで、<br><span class="hl">人気者。</span></h1>
+      <p class="lead">
+        その日あったこと、ふと思ったこと。書くだけで、たくさんのフォロワーが
+        いいね・コメント・シェアで反応してくれる。誰にも気を遣わず、あなたが輝ける場所です。
+      </p>
+      <div class="hero-cta">
+        <a class="appstore" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span class="as-txt"><span class="as-sm">ダウンロードは</span><span class="as-lg">App Store</span></span>
+        </a>
+        <a class="ghost" href="#how">どんなアプリ？
+          <svg class="icn" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="hero-note">
+        <svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        iPhone対応・無料でダウンロード。会員登録なしですぐ始められます。
+      </p>
+    </div>
+
+    <div class="phone-stage" id="phoneStage">
+      <div class="phone">
+        <img src="./img/feed.jpg" alt="Ninkki のタイムライン。投稿に3万件以上のいいねとコメントが届いている様子" />
+      </div>
+      <div class="chip c1">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-9.5-8.5C.5 9 2 5 5.5 5 7.7 5 9.4 6.3 12 9c2.6-2.7 4.3-4 6.5-4C22 5 23.5 9 21.5 12.5 19 16.4 12 21 12 21z"/></svg></span>
+        <div><b>32,636</b><span>いいねが届きました</span></div>
+      </div>
+      <div class="chip c2">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><b>59</b><span>みんなが返信中…</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-inner reveal">
+      <div class="stat"><div class="num" data-count="1000000" data-suffix="">0</div><div class="lbl">最大フォロワー数</div></div>
+      <div class="stat"><div class="num" data-count="20" data-suffix="種類">0</div><div class="lbl">テーマ・フォント</div></div>
+      <div class="stat"><div class="num" data-count="33" data-suffix="種">0</div><div class="lbl">集められるバッジ</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">How it works</span>
+      <h2>やることは、書くだけ。<br>反応は、ぜんぶ向こうからやってくる。</h2>
+      <p>むずかしい設定もフォロー集めもいりません。3ステップで、あなたは今日から人気者です。</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="sn">01</span>
+        <div class="si"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h3>今日のことを書く</h3>
+        <p>「なんか眠い…」そんな一言でOK。写真や投票をつけても、つけなくても自由です。</p>
+      </div>
+      <div class="step reveal">
+        <span class="sn">02</span>
+        <div class="si"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></div>
+        <h3>反応が届きはじめる</h3>
+        <p>いいね・シェア・コメントが、本物のSNSのように少しずつ増えていきます。</p>
+      </div>
+      <div class="step reveal">
+        <span class="sn">03</span>
+        <div class="si"><svg viewBox="0 0 24 24"><path d="M3 17l3-9 4 5 2-7 2 7 4-5 3 9z"/><path d="M3 19h18"/></svg></div>
+        <h3>人気者になっていく</h3>
+        <p>フォロワーは1万人から最大100万人へ。投稿するたび、万単位の反応が返ってきます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="bg-soft">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Features</span>
+      <h2>Ninkki でできること</h2>
+      <p>ただ反応が返るだけじゃない。あなたの毎日を、もっと楽しく彩る仕掛けがそろっています。</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="fi"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/></svg></div>
+        <h3>リアルなコメントと返信</h3><p>フォロワー同士が会話したり、あなたに共感したり。やりとりが時間をかけて自然に広がります。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/></svg></div>
+        <h3>AI投稿レビュー</h3><p>あなたの投稿の傾向を読み取って、「どんな人か」をやさしく言葉にしてくれます。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="fi"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg></div>
+        <h3>投稿分析・感情グラフ</h3><p>熱量・共鳴・情緒などをレーダーで可視化。投稿がポジティブ寄りかも一目でわかります。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14.5L7.5 22 12 19.5 16.5 22 15 14.5"/></svg></div>
+        <h3>集めて嬉しいバッジ</h3><p>「深夜の住人」「いいね王」「コメント嵐」など、行動に応じて33種類のバッジを獲得。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="fi"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="4" height="9" rx="1"/><rect x="10" y="4" width="4" height="16" rx="1"/><rect x="16" y="8" width="4" height="12" rx="1"/></svg></div>
+        <h3>投票（アンケート）</h3><p>2〜4択の投票を添えれば、フォロワーがリアルな割合で投票してくれます。</p>
+      </div>
+      <div class="feat reveal">
+        <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2 0-1.3-1-1.5-1-2.5 0-.8.7-1.5 1.5-1.5H17a4 4 0 0 0 4-4c0-4.4-4-7.5-9-7.5z"/><circle cx="7.5" cy="11.5" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/></svg></div>
+        <h3>自分だけの着せ替え</h3><p>20種類のテーマカラー・フォント・アプリアイコンで、あなた好みに自由にカスタマイズ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section>
+  <div class="wrap">
+    <div class="show-row">
+      <div class="show-text reveal">
+        <span class="tag">タイムライン</span>
+        <h3>投稿した瞬間から、<br>世界があなたに反応する。</h3>
+        <p>「今日なんかめっちゃ眠い…」――そんな何気ない一言にも、たくさんのフォロワーが集まってきます。</p>
+        <ul>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>いいね・シェア・コメントが時間とともにじわじわ増える</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>フォロワー同士が返信し合って、会話が盛り上がる</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>鍵つき投稿にすれば、自分だけの静かな記録にも</li>
+        </ul>
+      </div>
+      <div class="show-shot reveal"><div class="phone"><img src="./img/feed.jpg" alt="投稿に多数のいいねとコメントが届くタイムライン画面" /></div></div>
+    </div>
+
+    <div class="show-row rev">
+      <div class="show-text reveal">
+        <span class="tag">マイページ・分析</span>
+        <h3>あなたの言葉を、<br>データがそっと教えてくれる。</h3>
+        <p>毎日の投稿から、あなたらしさを分析。「ムーブメントの核」「ポジティブ寄り」など、自分でも気づかなかった一面が見えてきます。</p>
+        <ul>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>熱量・共鳴・情緒・笑撃・毒舌のレーダー分析</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>投稿の感情傾向をスコアで可視化</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>AI投稿レビューが「あなたらしさ」を言葉に</li>
+        </ul>
+      </div>
+      <div class="show-shot reveal"><div class="phone"><img src="./img/analytics1.jpg" alt="投稿分析のレーダーチャートと感情スコア画面" /></div></div>
+    </div>
+
+    <div class="show-row">
+      <div class="show-text reveal">
+        <span class="tag">カスタマイズ</span>
+        <h3>気分で着せ替え。<br>世界にひとつのNinkkiへ。</h3>
+        <p>海・夜・桜・抹茶…20種類のテーマカラー。読みやすいゴシックから上品な明朝、手書き風まで20書体。アプリアイコンまで変えられます。</p>
+        <ul>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>20色のテーマカラーと20種類のフォント</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>ホーム画面のアプリアイコンも気分で変更</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>文字サイズも5段階で読みやすく調整</li>
+        </ul>
+      </div>
+      <div class="show-shot reveal"><div class="phone"><img src="./img/colors.jpg" alt="テーマカラー選択画面" /></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans" class="bg-soft">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Plans</span>
+      <h2>あなたの「影響力」を選ぼう</h2>
+      <p>まずは無料から。物足りなくなったら、アプリ内でフォロワーをぐっと増やせます。</p>
+      <span class="iap-badge">
+        <svg class="icn" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>
+        ご購入・解約はすべてアプリ内（App内課金）から
+      </span>
+    </div>
+    <div class="plan-grid">
+
+      <div class="plan reveal">
+        <div class="pi"><svg viewBox="0 0 24 24"><path d="M12 22c0-6 0-9 0-9"/><path d="M12 13c-4 0-7-2-7-6 4 0 7 2 7 6z"/><path d="M12 11c0-3 2-6 6-6 0 3-2 6-6 6z"/></svg></div>
+        <div class="pname">一般人</div>
+        <div class="ptag">まずは無料で、人気者の世界をお試し。</div>
+        <div class="price">¥0</div>
+        <div class="followers">フォロワー 1万人</div>
+        <ul>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>1日3回まで投稿</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>いいね・シェア・コメント</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>投稿分析・バッジ</li>
+          <li class="mute"><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>投票・着せ替えは非対応</li>
+        </ul>
+        <a class="pcta line" href="https://apps.apple.com/jp/app/ninkki/id6761115630">無料でダウンロード</a>
+      </div>
+
+      <div class="plan pop reveal">
+        <span class="ribbon">いちばん人気</span>
+        <div class="pi"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z"/></svg></div>
+        <div class="pname">有名人</div>
+        <div class="ptag">ランチ1回分で始める、有名人体験。</div>
+        <div class="price">¥480<small> / 月</small></div>
+        <div class="followers">フォロワー 10万人</div>
+        <ul>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>1日10回まで投稿・画像3枚</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>投票（アンケート）が使える</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>テーマ・フォント・アイコン変更</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>広告なし・AI投稿レビュー</li>
+        </ul>
+        <a class="pcta fill" href="https://apps.apple.com/jp/app/ninkki/id6761115630">App Storeで入手</a>
+      </div>
+
+      <div class="plan reveal">
+        <div class="pi"><svg viewBox="0 0 24 24"><path d="M4 8l4 4 4-7 4 7 4-4-1.5 11h-13z"/><path d="M5.5 19h13"/></svg></div>
+        <div class="pname">トップスター</div>
+        <div class="ptag">投稿のたび、万単位の圧倒的なバズり体験。</div>
+        <div class="price">¥1,480<small> / 月</small></div>
+        <div class="followers">フォロワー 100万人</div>
+        <ul>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>1日20回まで投稿・画像5枚</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>全20テーマ・全20フォント解放</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>プロフィール背景グラデーション</li>
+          <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>有名人プランのすべて＋詳細分析</li>
+        </ul>
+        <a class="pcta line" href="https://apps.apple.com/jp/app/ninkki/id6761115630">App Storeで入手</a>
+      </div>
+
+    </div>
+    <p class="plan-note">年額プランなら約4か月分おトク。年額プランには30日間の無料トライアル付き。<br>表示価格は税込の目安です。最新の価格・購入手続きはアプリ内（App内課金）でご確認ください。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">FAQ</span>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq reveal">
+        <summary>フォロワーは本物の人ですか？<span class="pm"><svg class="icn" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">いいえ。反応はあなたの投稿に合わせて生成される、Ninkkiの中のフォロワーです。だから人間関係に疲れず、いつでも安心して投稿できます。フレンド機能を使えば、実際の友だちとつながることもできます。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>無料でどこまで使えますか？<span class="pm"><svg class="icn" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">フォロワー1万人の世界を無料で体験できます。投稿・いいね・コメント・分析・バッジまで楽しめます。投票や着せ替えは、アプリ内の有料プランで解放されます。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>購入や解約はどこからしますか？<span class="pm"><svg class="icn" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">プランの購入・変更・解約は、すべてアプリ内（App内課金）から行います。このサイトから直接お支払いいただくことはありません。解約後も、契約期間の終わりまでは有料の機能をそのまま使えます。</div>
+      </details>
+      <details class="faq reveal">
+        <summary>投稿は誰かに見られますか？<span class="pm"><svg class="icn" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">あなたの投稿は基本的にあなたとフォロワー（AI）だけのもの。鍵つき投稿にすれば、完全にあなただけの記録にできます。パスコードロックにも対応しています。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="wrap reveal">
+    <h2>さあ、今日のことを書いてみよう。</h2>
+    <p>たった一行から、あなたの人気者ライフが始まります。無料で、いますぐ。</p>
+    <div class="hero-cta">
+      <a class="appstore" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
+        <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span class="as-txt"><span class="as-sm">ダウンロードは</span><span class="as-lg">App Store</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE STICKY CTA -->
+<a class="mobile-cta" id="mobileCta" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
+  <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+  App Storeで無料ダウンロード
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="logo logo--light">Ni<span class="n">n</span>kki</span>
+        <p style="margin-top:16px;max-width:24em;font-size:13px;color:rgba(255,255,255,.55)">日記を書くだけで、人気者。<br>あなたが主役の、もうひとつのSNS。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>App</h4>
+          <a href="#how">使い方</a>
+          <a href="#features">できること</a>
+          <a href="#plans">プラン</a>
+          <a href="https://apps.apple.com/jp/app/ninkki/id6761115630">ダウンロード</a>
+        </div>
+        <div class="foot-col">
+          <h4>Support</h4>
+          <a href="https://ym0320.github.io/ninkki-legal/privacy.html">プライバシーポリシー</a>
+          <a href="https://ym0320.github.io/ninkki-legal/terms.html">利用規約</a>
+          <a href="https://ym0320.github.io/ninkki-legal/tokushoho.html">特定商取引法に基づく表記</a>
+          <a href="https://ym0320.github.io/ninkki-legal/support.html">お問い合わせ・サポート</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ninkki</span>
+      <span>Made in Japan</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // subtle phone parallax
+  const stage = document.getElementById('phoneStage');
+  if (stage && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    window.addEventListener('scroll', () => {
+      const y = Math.max(-40, Math.min(40, (window.scrollY - 120) * -0.05));
+      stage.style.transform = `translateY(${y}px)`;
+    }, {passive:true});
+  }
+
+  // reveal on scroll
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach((el)=>io.observe(el));
+
+  // hide mobile sticky CTA while the final download section is on screen (avoid double CTA)
+  const mobileCta = document.getElementById('mobileCta');
+  const finalSec = document.querySelector('.final');
+  if (mobileCta && finalSec){
+    new IntersectionObserver((es)=>{
+      es.forEach(e=> mobileCta.classList.toggle('hide', e.isIntersecting));
+    },{threshold:.25}).observe(finalSec);
+  }
+
+  // count-up stats
+  const fmt = (n)=> n.toLocaleString('ja-JP');
+  const countIO = new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
+      const dur = 1400, t0 = performance.now();
+      const tick = (t)=>{
+        const p = Math.min(1, (t - t0)/dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.floor(target * eased)) + suffix;
+        if(p < 1) requestAnimationFrame(tick); else el.textContent = fmt(target) + suffix;
+      };
+      requestAnimationFrame(tick);
+      countIO.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('.num[data-count]').forEach(el=>countIO.observe(el));
+</script>
+</body>
+</html>
