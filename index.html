@@ -122,6 +122,12 @@
   .appstore.sm .as-sm{font-size:9.5px}
   .appstore.sm .as-lg{font-size:16px}
 
+  /* ---------- 準備中 state ---------- */
+  .appstore.soon-btn,.appstore.soon-btn:hover{background:#8b9daa;cursor:default;pointer-events:none;box-shadow:none;transform:none}
+  .plan .pcta.soon-btn{background:#e5eaed;color:#8b9daa;border:1.5px solid #cdd5db;cursor:default;pointer-events:none}
+  .plan .pcta.soon-btn:hover{transform:none}
+  .mobile-cta.soon-btn{background:#8b9daa;cursor:default;pointer-events:none}
+
   /* mobile sticky CTA (thumb-zone, always visible on phones) */
   .mobile-cta{
     display:none;position:fixed;left:14px;right:14px;bottom:14px;z-index:75;
@@ -374,10 +380,10 @@
       <a href="#plans">プラン</a>
       <a href="#faq">よくある質問</a>
     </nav>
-    <a class="appstore sm" href="https://apps.apple.com/jp/app/ninkki/id6761115630" aria-label="App Storeでダウンロード">
+    <span class="appstore sm soon-btn" aria-label="近日リリース予定">
       <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-      <span class="as-txt"><span class="as-sm">Download on the</span><span class="as-lg">App Store</span></span>
-    </a>
+      <span class="as-txt"><span class="as-sm">近日リリース予定</span><span class="as-lg">App Store</span></span>
+    </span>
   </div>
 </header>
 
@@ -392,10 +398,10 @@
         いいね・コメント・シェアで反応してくれる。誰にも気を遣わず、あなたが輝ける場所です。
       </p>
       <div class="hero-cta">
-        <a class="appstore" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
+        <span class="appstore soon-btn">
           <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span class="as-txt"><span class="as-sm">Download on the</span><span class="as-lg">App Store</span></span>
-        </a>
+          <span class="as-txt"><span class="as-sm">近日リリース予定</span><span class="as-lg">App Store</span></span>
+        </span>
         <a class="ghost" href="#how">どんなアプリ？
           <svg class="icn" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -603,7 +609,7 @@
           <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>投稿分析・バッジ</li>
           <li class="mute"><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>投票・着せ替えは非対応</li>
         </ul>
-        <a class="pcta line" href="https://apps.apple.com/jp/app/ninkki/id6761115630">無料でダウンロード</a>
+        <span class="pcta line soon-btn">準備中</span>
       </div>
 
       <div class="plan pop reveal">
@@ -619,7 +625,7 @@
           <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>テーマ・フォント・アイコン変更</li>
           <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>広告なし・AI投稿レビュー</li>
         </ul>
-        <a class="pcta fill" href="https://apps.apple.com/jp/app/ninkki/id6761115630">App Storeで入手</a>
+        <span class="pcta fill soon-btn">準備中</span>
       </div>
 
       <div class="plan reveal">
@@ -634,7 +640,7 @@
           <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>プロフィール背景グラデーション</li>
           <li><span class="ck"><svg class="icn" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>有名人プランのすべて＋詳細分析</li>
         </ul>
-        <a class="pcta line" href="https://apps.apple.com/jp/app/ninkki/id6761115630">App Storeで入手</a>
+        <span class="pcta line soon-btn">準備中</span>
       </div>
 
     </div>
@@ -676,19 +682,19 @@
     <h2>さあ、今日のことを書いてみよう。</h2>
     <p>たった一行から、あなたの人気者ライフが始まります。無料で、いますぐ。</p>
     <div class="hero-cta">
-      <a class="appstore" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
+      <span class="appstore soon-btn">
         <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-        <span class="as-txt"><span class="as-sm">Download on the</span><span class="as-lg">App Store</span></span>
-      </a>
+        <span class="as-txt"><span class="as-sm">近日リリース予定</span><span class="as-lg">App Store</span></span>
+      </span>
     </div>
   </div>
 </section>
 
 <!-- MOBILE STICKY CTA -->
-<a class="mobile-cta" id="mobileCta" href="https://apps.apple.com/jp/app/ninkki/id6761115630">
+<span class="mobile-cta soon-btn" id="mobileCta">
   <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM262.1 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-  App Storeで無料ダウンロード
-</a>
+  近日リリース予定
+</span>
 
 <!-- FOOTER -->
 <footer>
@@ -704,7 +710,7 @@
           <a href="#how">使い方</a>
           <a href="#features">できること</a>
           <a href="#plans">プラン</a>
-          <a href="https://apps.apple.com/jp/app/ninkki/id6761115630">ダウンロード</a>
+          <span style="color:var(--ink-soft);cursor:default">準備中</span>
         </div>
         <div class="foot-col">
           <h4>Support</h4>
